@@ -8,6 +8,10 @@ def explain(word):
     w = word.lower()
     if w in file:
         return file[w]
+    elif w.title() in file:
+        return file[w.title()]
+    elif w.upper() in file:
+        return file[w.upper()]
     elif len(get_close_matches(w, file.keys(), 1))>0:
         confirmation = input("Did you mean %s ? Type y/n: " % get_close_matches(w, file.keys(), 1)[0])
         if confirmation == "y":
@@ -21,4 +25,11 @@ def explain(word):
 
 word = input("Enter word: ")
 
-print(explain(word))
+result = (explain(word))
+
+if type(result) == list:
+    for item in result:
+        print(item)
+else:
+    print(result)
+
